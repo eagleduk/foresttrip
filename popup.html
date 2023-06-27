@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        html {
+            width: 500px;
+        }
+
+        body {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 15px 10px;
+            box-sizing: border-box;
+            gap: 5px;
+        }
+
+        p {
+            display: flex;
+            width: 100%;
+            height: 30px;
+            gap: 8px;
+            align-items: center;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            font-size: 18px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            height: 100%;
+        }
+
+        hr {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <hr />
+    <div>
+        <p>
+            <label for="srchSido">지역</label>
+            <select name="srchSido" id="srchSido" title="시/도를 선택하세요" style="font-size:15px;">
+                <option value="">시/도 선택</option>
+                <option value="1"> 인천/경기</option>
+                <option value="2"> 강원</option>
+                <option value="3"> 충북</option>
+                <option value="4"> 대전/충남</option>
+                <option value="5"> 전북</option>
+                <option value="6"> 전남</option>
+                <option value="7"> 대구/경북</option>
+                <option value="8"> 부산/경남</option>
+                <option value="9"> 제주</option>
+            </select>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label for="srchInstt">휴향림</label>
+            <select name="srchInstt" id="srchInstt" title="자연휴양림을 선택하세요" style="font-size:15px;">
+                <option value="">자연휴양림 선택</option>
+            </select>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label for="srchForest">숙박 시설</label>
+            <select name="srchForest" id="srchForest" title="숙박시설을 선택하세요" style="font-size:15px;">
+                <option value="">숙박시설 선택</option>
+            </select>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label for="srchForest2">숙박 시설2</label>
+            <select name="srchForest2" id="srchForest2" title="시설목록을 선택하세요" style="font-size:15px;">
+                <option value="">시설 전체</option>
+            </select>
+        </p>
+    </div>
+    <button id="search">
+        검색
+    </button>
+    <hr>
+    <div>
+        <p>
+            <label for="srchGoodsId">시설</label>
+            <select name="srchGoodsId" id="srchGoodsId" title="시설을 선택하세요" style="font-size:15px;">
+            </select>
+        </p>
+    </div>
+    <div>
+        <p>
+            <label for="srchDate">날짜</label>
+            <input type="date" name="srchDate" id="srchDate">
+        </p>
+    </div>
+    <button id="rent">
+        예약 페이지
+    </button>
+
+    <script src="fetchs.js"></script>
+    <script src="renders.js"></script>
+    <script src="popup.js"></script>
+</body>
+
+</html>

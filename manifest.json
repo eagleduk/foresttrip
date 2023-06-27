@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "foresttrip",
+  "description": "숲나들e",
+  "version": "1.0.0",
+  "action": {
+    "default_icon": "logo.jpg",
+    "default_popup": "popup.html",
+    "default_title": "숲나들e"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "webNavigation",
+    "tabs",
+    "declarativeContent",
+    "storage"
+  ]
+}
