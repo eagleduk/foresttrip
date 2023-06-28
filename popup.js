@@ -54,13 +54,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // port.onMessage.addListener(function (msg) {
     //   console.log("message recieved" + msg);
     // });
-    console.log(chrome);
-    const page = chrome.extension.getBackgroundPage();
-    console.log(page);
-    console.log("page");
-
-    const scripts = await chrome.scripting.getRegisteredContentScripts();
-    console.log(scripts);
 
     chrome.tabs.query(CHROMETABQUERY, (tabs) => {
       // const gett = chrome.windows.get({
@@ -69,11 +62,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
       // console.log(gett);
 
       // chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" });
+
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
         //args: [],
         //func: addRentAnchor,
-        files: ["content.js"],
+        files: ["document_start.js"],
       });
     });
   });
