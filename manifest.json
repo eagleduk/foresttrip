@@ -8,12 +8,16 @@
     "default_popup": "popup.html",
     "default_title": "숲나들e"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "permissions": [
     "activeTab",
     "scripting",
     "webNavigation",
     "tabs",
     "declarativeContent",
-    "storage"
+    "storage",
+    "nativeMessaging"
   ]
 }
