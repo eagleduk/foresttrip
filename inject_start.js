@@ -1,7 +1,8 @@
-//window.addRentBtn = function () {
-console.log("inject_start.js start");
-(function () {
+function addRentBtn() {
   var tbody = document.getElementById("dayListTbody");
+  if (!tbody) {
+    alert("숙박시설 검색 후 실행해 주세요.");
+  }
   var trs = tbody.children;
   var classNm = "";
   if (monthRsrvtStatus.inqurSctin == "01") {
@@ -26,7 +27,7 @@ console.log("inject_start.js start");
       +srchLastDay.substring(4, 6) - 1,
       +srchLastDay.substring(6, 8) + 7
     );
-    // console.log(srchLastDay, " => ", day1, " ====== ", useDt, " => ", day2, " +++++++++  ", day3);
+
     return day1.getTime() < day2.getTime() && day2.getTime() <= day3.getTime();
   }
 
@@ -90,8 +91,6 @@ console.log("inject_start.js start");
 
               goodsTd.appendChild(a);
             } else {
-              //goodsTd.append('<a href="#payment_1"><span class="' + classNm + ' m_3" title="' + dataStr + '">완</span></a>');
-
               var a = document.createElement("a");
               a.href = "#payment_1";
 
@@ -161,6 +160,29 @@ console.log("inject_start.js start");
       }
     });
   });
-})();
+}
 
-console.log("inject_start.js end");
+const searchBtn = document.getElementById("searchBtn");
+
+if (searchBtn) {
+  const searchContainer = searchBtn.parentElement;
+
+  const earlyBtn = document.createElement("button");
+  earlyBtn.type = "button";
+  earlyBtn.className = "schBtn";
+  earlyBtn.style.backgroundColor = "red";
+  earlyBtn.id = "earlyBtn";
+  earlyBtn.addEventListener("click", addRentBtn);
+
+  const img = document.createElement("img");
+  img.src = "https://image.foresttrip.go.kr/images/content/icon_search.png";
+  img.alt = "검색";
+
+  earlyBtn.appendChild(img);
+
+  if (!document.getElementById("earlyBtn")) {
+    searchContainer.appendChild(earlyBtn);
+  }
+} else {
+  alert("월별 현황조회 페이지 에서 실행해 주세요.");
+}

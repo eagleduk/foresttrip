@@ -16,6 +16,8 @@ global 변수에 접근을 할 수가 없다.
 두 번째 이후에는 inject_start.js 가 실행이 되지 않는다..
 처음 최소 실행 시 버튼은 만들어 이벤트를 하는 방법도 생각...
 
+참조: https://github.com/ahuigo/chrome-ext/tree/3629262ae6884489e4b8489606e6651eb5bde1d8/demo
+
 ---
 
 최후의 방법으로는 스크립트 조각에 넣고 실행하는 방법.

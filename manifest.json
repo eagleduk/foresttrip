@@ -14,9 +14,6 @@
       "matches": ["<all_urls>"]
     }
   ],
-  "background": {
-    "service_worker": "background.js"
-  },
   "host_permissions": ["https://*/*"],
   "permissions": [
     "activeTab",
