@@ -89,6 +89,7 @@ function addRentBtn() {
 
               a.appendChild(span);
 
+              goodsTd.innerHTML = "";
               goodsTd.appendChild(a);
             } else {
               var a = document.createElement("a");
@@ -101,6 +102,7 @@ function addRentBtn() {
 
               a.appendChild(span);
 
+              goodsTd.innerHTML = "";
               goodsTd.appendChild(a);
             }
           } else {
@@ -140,6 +142,7 @@ function addRentBtn() {
 
             a.appendChild(span);
 
+            goodsTd.innerHTML = "";
             goodsTd.appendChild(a);
           }
         } else {
@@ -153,6 +156,7 @@ function addRentBtn() {
 
           a.appendChild(span);
 
+          goodsTd.innerHTML = "";
           goodsTd.appendChild(a);
         }
       } else {
