@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       if (tab) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          files: ["document_start.js"],
+          files: ["inject_start.js"],
         });
       }
     });
