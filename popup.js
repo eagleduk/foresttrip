@@ -1,4 +1,4 @@
-const CHROMETABQUERY = {
+var CHROMETABQUERY = {
   active: true,
   url: ["https://www.foresttrip.go.kr/rep/or/sssn/monthRsrvtStatus.do*"],
   currentWindow: true,
@@ -22,15 +22,15 @@ document.addEventListener("DOMContentLoaded", (e) => {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
           func: () => {
-            const mxmmStngDayCntEl = document.getElementById("mxmmStngDayCnt");
+            var mxmmStngDayCntEl = document.getElementById("mxmmStngDayCnt");
             if (mxmmStngDayCntEl) {
-              const value = mxmmStngDayCntEl.value;
-              const { index, maxIndex } = mxmmStngDayCntEl.dataset;
-
-              console.log(value, index, maxIndex, " EEEEEEEEEEEE  ");
+              var value = mxmmStngDayCntEl.value;
+              var { ables } = mxmmStngDayCntEl.dataset;
+              var ablesArray = ables.split(",");
 
               if (value && parseInt(value)) {
-                for (let i = 2; i <= parseInt(value); i++) {
+                for (let i = 2; i <= parseInt(value) && i < 7; i++) {
+                  if (ablesArray[i - 2] === "0") break;
                   document.getElementById(
                     "popComboSelectUseDt"
                   ).innerHTML += `<div><label for="daysel${i}"><input type="radio" id="daysel${i}" name="daysel" value="${i}"> ${i}박${
@@ -38,9 +38,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
                   }일</label></div>`;
                 }
               }
-              document.getElementById(
-                "popComboSelectUseDt"
-              ).innerHTML += `<span>최대 박수: ${value}, 현재 index: ${index}, 추가 최대 index: ${maxIndex}</span>`;
+              // document.getElementById(
+              //   "popComboSelectUseDt"
+              // ).innerHTML += `<span>최대 박수: ${value}, 오늘 이후 가능 날 ables: ${ables}, 추가 최대 index: ${maxIndex}</span>`;
             }
           },
         });

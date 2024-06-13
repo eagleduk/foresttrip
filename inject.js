@@ -34,7 +34,7 @@ function addRentBtn() {
   monthRsrvtStatus.goodsList.forEach((goods, index) => {
     var tr = trs[index];
     var tds = tr.children;
-    var addIndex = 0;
+
     goods.forEach((good, index) => {
       var useDt = good.useDt;
       var goodsTd = tds[index];
@@ -111,26 +111,62 @@ function addRentBtn() {
             a.className = "rsrvtSelectBtn";
             a.dataset.no = good.goodsId;
             a.dataset.no1 = good.useDt;
-            a.dataset.index = addIndex;
             a.rsrvtWtngSctin = "01";
+            a.dataset.able = 1;
             a.href = "#payment_1";
 
             var span = document.createElement("span");
             span.className = classNm + " m_1";
             span.title = dataStr;
             span.textContent = "예";
-            span.dataset.index = addIndex;
 
             a.addEventListener("click", function (e) {
               e.preventDefault();
 
-              console.log(e.currentTarget);
-              const mxmmStngDayCntEl = document.createElement("input");
+              function nextAbles(el) {
+                var parentTD = el;
+                var breaker = 0;
+                while (
+                  parentTD.tagName.toUpperCase() !== "TD" &&
+                  breaker < 10
+                ) {
+                  parentTD = parentTD.parentElement;
+                  breaker++;
+                }
+
+                var result = [];
+                var nextTD = parentTD;
+                for (var i = 0; i < 7; i++) {
+                  if (!nextTD.nextSibling) break;
+                  nextTD = nextTD.nextSibling;
+                  if (
+                    nextTD &&
+                    nextTD.tagName.toUpperCase() === "TD" &&
+                    nextTD.firstChild &&
+                    nextTD.firstChild.tagName.toUpperCase() === "A"
+                  ) {
+                    var nextA = nextTD.firstChild;
+
+                    if (nextA.dataset.able === undefined) {
+                      result.push("0");
+                    } else {
+                      result.push("1");
+                    }
+                  }
+                }
+                return result.join(",");
+              }
+
+              var ables = nextAbles(e.currentTarget);
+
+              var mxmmStngDayCntEl = document.getElementById("mxmmStngDayCnt");
+              if (!mxmmStngDayCntEl)
+                mxmmStngDayCntEl = document.createElement("input");
+
               mxmmStngDayCntEl.id = "mxmmStngDayCnt";
-              mxmmStngDayCntEl.dataset.index = e.currentTarget.dataset.index;
-              mxmmStngDayCntEl.dataset.maxIndex = 7;
+              mxmmStngDayCntEl.dataset.ables = ables;
               mxmmStngDayCntEl.value = good.mxmmStngDayCnt;
-              mxmmStngDayCntEl.type = "text";
+              mxmmStngDayCntEl.type = "hidden";
 
               document.body.appendChild(mxmmStngDayCntEl);
 
@@ -159,8 +195,6 @@ function addRentBtn() {
 
             goodsTd.innerHTML = "";
             goodsTd.appendChild(a);
-
-            addIndex++;
           }
         } else {
           var a = document.createElement("a");
