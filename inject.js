@@ -34,6 +34,7 @@ function addRentBtn() {
   monthRsrvtStatus.goodsList.forEach((goods, index) => {
     var tr = trs[index];
     var tds = tr.children;
+    var addIndex = 0;
     goods.forEach((good, index) => {
       var useDt = good.useDt;
       var goodsTd = tds[index];
@@ -110,6 +111,7 @@ function addRentBtn() {
             a.className = "rsrvtSelectBtn";
             a.dataset.no = good.goodsId;
             a.dataset.no1 = good.useDt;
+            a.dataset.index = addIndex;
             a.rsrvtWtngSctin = "01";
             a.href = "#payment_1";
 
@@ -117,8 +119,21 @@ function addRentBtn() {
             span.className = classNm + " m_1";
             span.title = dataStr;
             span.textContent = "예";
+            span.dataset.index = addIndex;
 
-            a.addEventListener("click", function () {
+            a.addEventListener("click", function (e) {
+              e.preventDefault();
+
+              console.log(e.currentTarget);
+              const mxmmStngDayCntEl = document.createElement("input");
+              mxmmStngDayCntEl.id = "mxmmStngDayCnt";
+              mxmmStngDayCntEl.dataset.index = e.currentTarget.dataset.index;
+              mxmmStngDayCntEl.dataset.maxIndex = 7;
+              mxmmStngDayCntEl.value = good.mxmmStngDayCnt;
+              mxmmStngDayCntEl.type = "text";
+
+              document.body.appendChild(mxmmStngDayCntEl);
+
               var rsrvtPssblYn = monthRsrvtStatus.selectGoodsRsrvtPssblListYn(
                 good.insttId,
                 good.goodsId,
@@ -144,6 +159,8 @@ function addRentBtn() {
 
             goodsTd.innerHTML = "";
             goodsTd.appendChild(a);
+
+            addIndex++;
           }
         } else {
           var a = document.createElement("a");

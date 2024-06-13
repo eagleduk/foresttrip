@@ -15,5 +15,5 @@
     }
   ],
   "host_permissions": ["https://*/*"],
-  "permissions": ["scripting", "tabs"]
+  "permissions": ["scripting", "tabs", "storage"]
 }
