@@ -67,7 +67,8 @@ function addRentBtn() {
               span.title = dataStr;
               span.textContent = "대" + (Number(good.wtngCnt) + 1);
 
-              a.addEventListener("click", function () {
+              a.addEventListener("click", function (e) {
+                e.preventDefault();
                 var wtngPssblYn = monthRsrvtStatus.selectGoodsWtngPssblYn(
                   good.insttId,
                   good.goodsId,
@@ -95,6 +96,9 @@ function addRentBtn() {
             } else {
               var a = document.createElement("a");
               a.href = "#payment_1";
+              a.addEventListener("click", function (e) {
+                e.preventDefault();
+              });
 
               var span = document.createElement("span");
               span.className = classNm + " m_3";
@@ -199,6 +203,9 @@ function addRentBtn() {
         } else {
           var a = document.createElement("a");
           a.href = "#payment_1";
+          a.addEventListener("click", function (e) {
+            e.preventDefault();
+          });
 
           var span = document.createElement("span");
           span.className = classNm + " m_5";
