@@ -39,7 +39,7 @@ function addRentBtn() {
       var useDt = good.useDt;
       var goodsTd = tds[index];
 
-      if (checkRentableDate(monthRsrvtStatus.srchLastDay, useDt)) {
+      if (goodsTd && checkRentableDate(monthRsrvtStatus.srchLastDay, useDt)) {
         if (monthRsrvtStatus.chkHldt(good.useDt)) {
           var dataStr =
             good.goodsNm +
@@ -169,6 +169,7 @@ function addRentBtn() {
 
               mxmmStngDayCntEl.id = "mxmmStngDayCnt";
               mxmmStngDayCntEl.dataset.ables = ables;
+              mxmmStngDayCntEl.dataset.lastday = monthRsrvtStatus.srchLastDay;
               mxmmStngDayCntEl.value = good.mxmmStngDayCnt;
               mxmmStngDayCntEl.type = "hidden";
 
