@@ -46,6 +46,25 @@ data: JSON.stringify(paramObj),
 
 */
 
+/* 분석 결과
+
+데이터는 가져오는데 
+rsrvtAvail 값이	"OVER_DATE" 인 경우가 있다.
+
+또한 [/selectRsrvtGoodsListForMonthRsrvt.do] hldtInfoList	에 휴관일이 있는 듯하다.
+
+*/
+
+/*
+
+/selectInsttListForMonthRsrvt.do => 시/도 선택 시 이벤트
+/selectSthngListForMonthRsrvt.do => 휴양림 선택 시 이벤트
+/selectSthngDtlListForMonthRsrvt.do => 숙박시설 1 선택 시 이벤트
+/selectRsrvtGoodsListForMonthRsrvt.do => 검색 버튼 시 이벤트1 [휴양림 기본 정보 가져옴]
+/selectRsrvtAvailInfoListForMonthRsrvt.do => 검색 버튼 시 이벤트2 [시설 예약 정보 가져옴]
+
+*/
+
 function addRentBtn() {
   var tbody = document.getElementById("dayListTbody");
   if (!tbody) {
@@ -297,3 +316,16 @@ if (searchBtn) {
 } else {
   alert("월별 현황조회 페이지 에서 실행해 주세요.");
 }
+
+(() => {
+  console.log("개발자 모드 해제");
+  window.removeEventListener("onresize", detectDevTool);
+  window.removeEventListener("onmousemove", detectDevTool);
+  window.removeEventListener("onfocus", detectDevTool);
+  window.removeEventListener("onblur", detectDevTool);
+  window.removeEventListener("load", detectDevTool);
+  window.removeEventListener("resize", detectDevTool);
+  window.removeEventListener("mousemove", detectDevTool);
+  window.removeEventListener("focus", detectDevTool);
+  window.removeEventListener("blur", detectDevTool);
+})();
