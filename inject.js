@@ -1,3 +1,51 @@
+/*
+
+개발자 모드 해제
+
+window.removeEventListener('onresize', detectDevTool);
+window.removeEventListener('onmousemove', detectDevTool);
+window.removeEventListener('onfocus', detectDevTool);
+window.removeEventListener('onblur', detectDevTool);
+window.removeEventListener('load', detectDevTool);
+window.removeEventListener('resize', detectDevTool);
+window.removeEventListener('mousemove', detectDevTool);
+window.removeEventListener('focus', detectDevTool);
+window.removeEventListener('blur', detectDevTool);
+
+*/
+
+/*
+
+데이터 검색
+
+var paramObj = {};
+paramObj.insttId = goodsInfo.insttId;
+paramObj.upperGoodsClsscCd = goodsInfo.upperGoodsClsscCd;
+paramObj.goodsIdList = goodsIdList;
+paramObj.srchDate = monthRsrvtStatus.srchDate;
+paramObj.lastDay = monthRsrvtStatus.srchLastDay;
+paramObj.inqurSctin = monthRsrvtStatus.inqurSctin;
+
+{
+	"goodsIdList": [
+		"GID020301040100201002001000024",
+		"GID020301040100201002001000025",
+		"GID020301040100201002001000026"
+	],
+	"inqurSctin": "01",
+	"insttId": "ID02030104",
+	"lastDay": "20250624",
+	"srchDate": "202506",
+	"upperGoodsClsscCd": "01"
+}
+
+ url: "/rep/or/selectRsrvtAvailInfoListForMonthRsrvt.do",
+type:'post',
+dataType:'json',
+data: JSON.stringify(paramObj),
+
+*/
+
 function addRentBtn() {
   var tbody = document.getElementById("dayListTbody");
   if (!tbody) {
