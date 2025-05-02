@@ -1,3 +1,5 @@
+import { test } from "./common.js";
+
 var CHROMETABQUERY = {
   active: true,
   url: ["https://www.foresttrip.go.kr/rep/or/sssn/monthRsrvtStatus.do*"],
@@ -5,12 +7,37 @@ var CHROMETABQUERY = {
 };
 
 document.addEventListener("DOMContentLoaded", (e) => {
-  document.getElementById("add").addEventListener("click", async (e) => {
+  // 링크
+  document.querySelectorAll("a").forEach((anchor) => {
+    anchor.addEventListener("click", (e) => {
+      if (e.target.dataset.url) {
+        e.preventDefault();
+        chrome.tabs.update({
+          url: e.target.dataset.url,
+        });
+        return;
+      }
+    });
+  });
+
+  document.getElementById("developer-mode").addEventListener("click", () => {
     chrome.tabs.query(CHROMETABQUERY, ([tab]) => {
       if (tab) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
           files: ["inject_start.js"],
+        });
+      }
+    });
+  });
+
+  document.getElementById("add").addEventListener("click", async (e) => {
+    chrome.tabs.query(CHROMETABQUERY, ([tab]) => {
+      if (tab) {
+        chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          args: [],
+          func: test,
         });
       }
     });

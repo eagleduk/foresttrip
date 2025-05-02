@@ -19,7 +19,15 @@
     }
   ],
   "host_permissions": ["https://www.foresttrip.go.kr/*"],
-  "permissions": ["scripting", "tabs", "storage", "sidePanel"],
+  "permissions": [
+    "activeTab",
+    "webNavigation",
+    "scripting",
+    "tabs",
+    "storage",
+    "sidePanel",
+    "declarativeContent"
+  ],
   "side_panel": {
     "default_path": "popup.html"
   }
