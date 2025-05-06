@@ -1,4 +1,4 @@
-import { test } from "./common.js";
+import { appendSearchButton } from "./common.js";
 
 var CHROMETABQUERY = {
   active: true,
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
           args: [],
-          func: test,
+          func: appendSearchButton,
         });
       }
     });

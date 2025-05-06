@@ -48,10 +48,17 @@ data: JSON.stringify(paramObj),
 
 /* 분석 결과
 
+monthRsrvtStatus
+  - dispGoodsTr: 예약 버튼 그리는 함수
+  - goodsList: 검색 결과에 따른 예약 정보 
+      {
+          rsrvtAvail: "BEFORE_DATE" | "Y" | "OVER_DATE" 등 있다. => 예약 버튼 나오게 하는듯, 예약 가능, 이미예약 등 정보는 다른곳에 있는듯
+      }
+
 데이터는 가져오는데 
 rsrvtAvail 값이	"OVER_DATE" 인 경우가 있다.
 
-또한 [/selectRsrvtGoodsListForMonthRsrvt.do] hldtInfoList	에 휴관일이 있는 듯하다.
+또한 monthRsrvtStatus.hldtInfoList	에 휴관일이 있는 듯하다.
 
 */
 
@@ -62,6 +69,25 @@ rsrvtAvail 값이	"OVER_DATE" 인 경우가 있다.
 /selectSthngDtlListForMonthRsrvt.do => 숙박시설 1 선택 시 이벤트
 /selectRsrvtGoodsListForMonthRsrvt.do => 검색 버튼 시 이벤트1 [휴양림 기본 정보 가져옴]
 /selectRsrvtAvailInfoListForMonthRsrvt.do => 검색 버튼 시 이벤트2 [시설 예약 정보 가져옴]
+
+
+*/
+
+/*
+
+시설 예약 주기?
+monthRsrvtStatus.data.rsrvtPolcy.rsrvtCycleTpeCd = "WEEK" | "MON"
+
+인천/경기
+  - 청평자연휴양림 "MON", 20250731
+  - 용인자연휴양림 "MON", 20250531
+  - 강씨봉자연휴양림 "MON", 20250630
+  - 유명산자연휴양림 "WEEK", 20250610
+  - 양평 백운봉 자연휴양림 "WEEK", 20250527
+
+예약가능기간 + rsrvtCycleTpeCd 주기 해서 예약 버튼 그리기
+  : 휴관일 monthRsrvtStatus.hldtInfoList 에서 파악 가능
+  : 공사중, 추첨예약, 우선예약, 예약및대기완료, 대기 는 구분 가능할까?
 
 */
 
@@ -292,32 +318,36 @@ function addRentBtn() {
   });
 }
 
-const searchBtn = document.getElementById("searchBtn");
-
-if (searchBtn) {
-  const searchContainer = searchBtn.parentElement;
-
-  const earlyBtn = document.createElement("button");
-  earlyBtn.type = "button";
-  earlyBtn.className = "schBtn";
-  earlyBtn.style.backgroundColor = "red";
-  earlyBtn.id = "earlyBtn";
-  earlyBtn.addEventListener("click", addRentBtn);
-
-  const img = document.createElement("img");
-  img.src = "https://image.foresttrip.go.kr/images/content/icon_search.png";
-  img.alt = "검색";
-
-  earlyBtn.appendChild(img);
-
-  if (!document.getElementById("earlyBtn")) {
-    searchContainer.appendChild(earlyBtn);
+function earlyBtnEventHandler(event) {
+  var tbody = document.getElementById("dayListTbody");
+  if (!tbody) {
+    alert("숙박시설 검색 후 실행해 주세요.");
   }
 }
 
-function test() {
+function appendSearchButton() {
   const searchBtn = document.getElementById("searchBtn");
-  console.dir(searchBtn);
+
+  if (searchBtn) {
+    const searchContainer = searchBtn.parentElement;
+
+    const earlyBtn = document.createElement("button");
+    earlyBtn.type = "button";
+    earlyBtn.className = "schBtn";
+    earlyBtn.style.backgroundColor = "red";
+    earlyBtn.id = "earlyBtn";
+    earlyBtn.addEventListener("click", earlyBtnEventHandler);
+
+    const img = document.createElement("img");
+    img.src = "https://image.foresttrip.go.kr/images/content/icon_search.png";
+    img.alt = "검색";
+
+    earlyBtn.appendChild(img);
+
+    if (!document.getElementById("earlyBtn")) {
+      searchContainer.appendChild(earlyBtn);
+    }
+  }
 }
 
-export { test };
+export { appendSearchButton };
