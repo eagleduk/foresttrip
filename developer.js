@@ -6,4 +6,4 @@
     this.remove();
   };
   document.querySelector("body").appendChild(s);
-})("inject.js");
+})("developer_clear.js");

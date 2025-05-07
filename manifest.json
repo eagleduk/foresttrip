@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "foresttrip",
+  "name": "Forest Trip",
   "description": "숲나들e",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "action": {
     "default_icon": "logo.png",
     "default_popup": "popup.html",
@@ -14,7 +14,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": ["inject.js"],
+      "resources": ["developer_clear.js", "extra_search.js"],
       "matches": ["<all_urls>"]
     }
   ],

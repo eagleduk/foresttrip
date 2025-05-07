@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       if (tab) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          files: ["inject_start.js"],
+          files: ["developer.js"],
         });
       }
     });
@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       if (tab) {
         chrome.scripting.executeScript({
           target: { tabId: tab.id },
-          args: [],
-          func: appendSearchButton,
+          files: ["extra.js"],
         });
       }
     });
